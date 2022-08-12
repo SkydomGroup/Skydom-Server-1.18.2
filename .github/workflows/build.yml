@@ -20,7 +20,8 @@ jobs:
             run: ./gradlew applyPatches --stacktrace
           - name: Build
             run: ./gradlew createReobfBundlerJar --stacktrace
-          - uses: actions/upload-artifact@v3
+          - name: Upload Artifacts
+            uses: actions/upload-artifact@v2
             with:
               name: Skydom-Server Artifact
               path: build/libs/*.jar
