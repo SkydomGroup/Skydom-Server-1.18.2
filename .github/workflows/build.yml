@@ -39,7 +39,7 @@ jobs:
                   ./gradlew createReobfBundlerJar --stacktrace
             - uses: actions/upload-artifact@v3
               with:
-                name: my-artifact
+                name: Skydom-Server Artifact
                 path: build/libs/islet-bundler-*-SNAPSHOT-reobf.jar
             - uses: "marvinpinto/action-automatic-releases@latest"
               with:
