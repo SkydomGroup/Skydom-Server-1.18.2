@@ -41,11 +41,3 @@ jobs:
               with:
                 name: Skydom-Server Artifact
                 path: build/libs/islet-bundler-*-SNAPSHOT-reobf.jar
-            - uses: "marvinpinto/action-automatic-releases@latest"
-              with:
-                repo_token: "${{ secrets.GIT_RELEASE_TOKEN }}"
-                automatic_release_tag: "Latest"
-                prerelease: true
-                title: "Development Build"
-                files: |
-                  build/libs/*.jar
