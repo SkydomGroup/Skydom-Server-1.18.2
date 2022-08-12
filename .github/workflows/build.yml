@@ -32,8 +32,8 @@ jobs:
                   distribution: 'temurin'
             - name: Patch and Build
               run: |
-                  ./gradlew applyPatches --stacktrace
-                  ./gradlew createReobfBundlerJar --stacktrace
+                  sudo ./gradlew applyPatches --stacktrace
+                  sudo ./gradlew createReobfBundlerJar --stacktrace
             - uses: actions/upload-artifact@v3
               with:
                 name: Skydom-Server Artifact
