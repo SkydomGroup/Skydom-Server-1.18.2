@@ -14,12 +14,12 @@ index 2374cc9bab5039d0a0dc11d4b2ec573ab75778a7..21f02862e6f1f6d9a898cdb02acedd2a
  dependencies {
 -    implementation(project(":paper-api"))
 -    implementation(project(":paper-mojangapi"))
-+    // Islet start
-+    implementation(project(":islet-api"))
++    // Skydom start
++    implementation(project(":skydom-api"))
 +    implementation("io.papermc.paper:paper-mojangapi:1.19.2-R0.1-SNAPSHOT") {
-+        exclude("io.papermc.paper", "paper-api")
++        exclude("io.papermc.paper", "skydom-api")
 +    }
-+    // Islet end
++    // Skydom end
      // Paper start
      implementation("org.jline:jline-terminal-jansi:3.21.0")
      implementation("net.minecrell:terminalconsoleappender:1.3.0")
@@ -28,7 +28,7 @@ index 2374cc9bab5039d0a0dc11d4b2ec573ab75778a7..21f02862e6f1f6d9a898cdb02acedd2a
              "Main-Class" to "org.bukkit.craftbukkit.Main",
              "Implementation-Title" to "CraftBukkit",
 -            "Implementation-Version" to "git-Paper-$implementationVersion",
-+            "Implementation-Version" to "git-Islet-$implementationVersion", // Islet
++            "Implementation-Version" to "git-Skydom-$implementationVersion", // Skydom
              "Implementation-Vendor" to date, // Paper
              "Specification-Title" to "Bukkit",
              "Specification-Version" to project.version,
@@ -37,7 +37,7 @@ index 2374cc9bab5039d0a0dc11d4b2ec573ab75778a7..21f02862e6f1f6d9a898cdb02acedd2a
      block: JavaExec.() -> Unit
  ): TaskProvider<JavaExec> = register<JavaExec>(name) {
 -    group = "paper"
-+    group = "paperweight" // Islet
++    group = "paperweight" // Skydom
      mainClass.set("org.bukkit.craftbukkit.Main")
      standardInput = System.`in`
      workingDir = rootProject.layout.projectDirectory
@@ -50,7 +50,7 @@ index 46fcecbfb3f866ba89036a11113c8ad0989b04bc..2419b52d1dada7e3cf98683530a22efc
      @DontObfuscate
      public String getServerModName() {
 -        return "Paper"; // Paper - Paper > // Spigot - Spigot > // CraftBukkit - cb > vanilla!
-+        return "Islet"; // Islet - Islet > // Paper - Paper > // Spigot - Spigot > // CraftBukkit - cb > vanilla!
++        return "Skydom"; // Skydom - Skydom > // Paper - Paper > // Spigot - Spigot > // CraftBukkit - cb > vanilla!
      }
  
      public SystemReport fillSystemReport(SystemReport details) {
@@ -63,7 +63,7 @@ index bfde5bbcccfaa754ec6bdf4f3817981a93e465bd..34a13bf8b1540039208906e370c40271
  
  public final class CraftServer implements Server {
 -    private final String serverName = "Paper"; // Paper
-+    private final String serverName = "Islet"; // Islet // Paper
++    private final String serverName = "Skydom"; // Skydom // Paper
      private final String serverVersion;
      private final String bukkitVersion = Versioning.getBukkitVersion();
      private final Logger logger = Logger.getLogger("Minecraft");
@@ -76,7 +76,7 @@ index 774556a62eb240da42e84db4502e2ed43495be17..4e03c6cdecc1c99b999fdf992ddb32fa
          String result = "Unknown-Version";
  
 -        InputStream stream = Bukkit.class.getClassLoader().getResourceAsStream("META-INF/maven/io.papermc.paper/paper-api/pom.properties");
-+        InputStream stream = Bukkit.class.getClassLoader().getResourceAsStream("META-INF/maven/com.molean.isletopia/islet-api/pom.properties"); // Islet
++        InputStream stream = Bukkit.class.getClassLoader().getResourceAsStream("META-INF/maven/org.skydom.chosen.server/skydom-api/pom.properties"); // Islet
          Properties properties = new Properties();
  
          if (stream != null) {

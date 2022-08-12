@@ -5,6 +5,6 @@ pluginManagement {
     }
 }
 
-rootProject.name = "islet"
+rootProject.name = "skydom"
 
-include("islet-api", "islet-server")
+include("skydom-api", "skydom-server")

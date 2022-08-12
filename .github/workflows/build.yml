@@ -30,21 +30,11 @@ jobs:
                   java-version: ${{ matrix.java }}
                   cache: 'gradle'
                   distribution: 'temurin'
-            - name: Patch and build
+            - name: Patch and Build
               run: |
-                  git config --global user.email "no-reply@github.com"
-                  git config --global user.name "Github Actions"
                   ./gradlew applyPatches --stacktrace
                   ./gradlew createReobfBundlerJar --stacktrace
             - uses: actions/upload-artifact@v3
               with:
-                name: my-artifact
-                path: build/libs/islet-bundler-*-SNAPSHOT-reobf.jar
-            - uses: "marvinpinto/action-automatic-releases@latest"
-              with:
-                repo_token: "${{ secrets.GIT_RELEASE_TOKEN }}"
-                automatic_release_tag: "latest"
-                prerelease: true
-                title: "Development Build"
-                files: |
-                  build/libs/*.jar
+                name: Skydom-Server Artifact
+                path: build/libs/*.jar

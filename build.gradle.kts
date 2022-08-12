@@ -50,24 +50,22 @@ subprojects {
 }
 
 paperweight {
-    serverProject.set(project(":islet-server"))
+    serverProject.set(project("skydom-server"))
 
     remapRepo.set(paperMavenPublicUrl)
     decompileRepo.set(paperMavenPublicUrl)
 
     usePaperUpstream(providers.gradleProperty("paperRef")) {
         withPaperPatcher {
-            apiPatchDir.set(layout.projectDirectory.dir("patches/api"))
-            apiOutputDir.set(layout.projectDirectory.dir("islet-api"))
 
             serverPatchDir.set(layout.projectDirectory.dir("patches/server"))
-            serverOutputDir.set(layout.projectDirectory.dir("islet-server"))
+            serverOutputDir.set(layout.projectDirectory.dir("skydom-server"))
         }
     }
 }
 
 tasks.generateDevelopmentBundle {
-    apiCoordinates.set("com.molean.isletopia:islet-api")
+    apiCoordinates.set("org.skydom.chosen.server:skydom-api")
     mojangApiCoordinates.set("io.papermc.paper:paper-mojangapi")
     libraryRepositories.set(
         listOf(
