@@ -57,6 +57,8 @@ paperweight {
 
     usePaperUpstream(providers.gradleProperty("paperRef")) {
         withPaperPatcher {
+            apiPatchDir.set(layout.projectDirectory.dir("patches/api"))
+            apiOutputDir.set(layout.projectDirectory.dir("skydom-api"))
 
             serverPatchDir.set(layout.projectDirectory.dir("patches/server"))
             serverOutputDir.set(layout.projectDirectory.dir("skydom-server"))
