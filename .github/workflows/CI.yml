@@ -40,4 +40,4 @@ jobs:
             - uses: actions/upload-artifact@v3
               with:
                 name: Skydom-Server Artifact
-                path: build/libs/islet-bundler-*-SNAPSHOT-reobf.jar
+                path: build/libs/*.jar
