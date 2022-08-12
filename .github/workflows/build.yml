@@ -16,6 +16,8 @@ jobs:
             uses: actions/setup-java@v1
             with:
               java-version: 17
+          - name: Permission
+            run: chmod 777 gradlew
           - name: Patch
             run: ./gradlew applyPatches --stacktrace
           - name: Build
