@@ -16,10 +16,10 @@ jobs:
             uses: actions/setup-java@v1
             with:
               java-version: 17
-          - name: Patch and Build
-            run: |
-              ./gradlew applyPatches --stacktrace
-              ./gradlew createReobfBundlerJar --stacktrace
+          - name: Patch
+            run: ./gradlew applyPatches --stacktrace
+          - name: Build
+            run: ./gradlew createReobfBundlerJar --stacktrace
           - uses: actions/upload-artifact@v3
             with:
               name: Skydom-Server Artifact
