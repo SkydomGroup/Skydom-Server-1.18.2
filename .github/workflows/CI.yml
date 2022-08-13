@@ -23,9 +23,9 @@ jobs:
                 java: [17]
             fail-fast: true
         steps:
-            - uses: actions/checkout@latest
+            - uses: actions/checkout@v2.4.0
             - name: JDK ${{ matrix.java }}
-              uses: actions/setup-java@latest
+              uses: actions/setup-java@v3.1.0
               with:
                   java-version: ${{ matrix.java }}
                   cache: 'gradle'
@@ -37,7 +37,7 @@ jobs:
                   git config --global user.name "Github Actions"
                   ./gradlew applyPatches --stacktrace
                   ./gradlew createReobfBundlerJar --stacktrace
-            - uses: actions/upload-artifact@latest
+            - uses: actions/upload-artifact@v3
               with:
                 name: Skydom-Server Artifact
                 path: build/libs/*.jar
