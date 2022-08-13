@@ -9,13 +9,16 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        java: [17]
+      fail-fast: true
     steps:
     - uses: actions/checkout@v2.4.0
-    - name: Set up JDK 17
+    - name: Set up JDK ${{ matrix.java }}
       uses: actions/setup-java@v3.1.0
       with:
-        java-version: 17
+        java-version: ${{ matrix.java }}
     - name: Patch and build
       run: |
         chmod 777 gradlew
