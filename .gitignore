@@ -1,1 +1,4 @@
 .gradle
+skydom-server
+skydom-api
+build
