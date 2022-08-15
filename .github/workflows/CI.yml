@@ -16,7 +16,7 @@ on:
 jobs:
     build:
         # Only run on PRs if the source branch is on someone else's repo
-        if: ${{ github.event_name != 'pull_request' || github.repository != github.event.pull_request.head.repo.full_name }}
+        if: contains(github.event.head_commit.message, '[build skip]') == false
         runs-on: ubuntu-latest
         strategy:
             matrix:
@@ -37,15 +37,17 @@ jobs:
                   git config --global user.name "Github Actions"
                   ./gradlew applyPatches --stacktrace
                   ./gradlew createReobfBundlerJar --stacktrace
-            - uses: actions/upload-artifact@v3
+            - uses: actions/upload-artifact@v2
               with:
                 name: Skydom-Server Artifact
                 path: build/libs/*.jar
-            - uses: "marvinpinto/action-automatic-releases@latest"
+            - name: Automatic Releases
+              uses: marvinpinto/action-automatic-releases@v1.2.1
+              if: github.event_name != 'pull_request'
               with:
-                repo_token: "${{ secrets.GIT_RELEASE_TOKEN }}"
-                automatic_release_tag: "Development Version"
+                repo_token: "${{ secrets.GITHUB_TOKEN }}"
+                automatic_release_tag: "Dev"
                 prerelease: true
-                title: "Development Build"
+                title: "Skydom-Server Development Version"
                 files: |
                   build/libs/*.jar
